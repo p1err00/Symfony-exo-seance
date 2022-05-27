@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OrganismeFormation index{% endblock %}
+
+{% block body %}
+    <h1>OrganismeFormation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Addresse</th>
+                <th>Numero_telephone</th>
+                <th>Email_contact</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for organisme_formation in organisme_formations %}
+            <tr>
+                <td>{{ organisme_formation.id }}</td>
+                <td>{{ organisme_formation.nom }}</td>
+                <td>{{ organisme_formation.addresse }}</td>
+                <td>{{ organisme_formation.numeroTelephone }}</td>
+                <td>{{ organisme_formation.emailContact }}</td>
+                <td>
+                    <a href="{{ path('app_organisme_formation_show', {'id': organisme_formation.id}) }}">show</a>
+                    <a href="{{ path('app_organisme_formation_edit', {'id': organisme_formation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_organisme_formation_new') }}">Create new</a>
+{% endblock %}
